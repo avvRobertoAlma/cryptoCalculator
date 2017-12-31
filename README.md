@@ -9,6 +9,6 @@ Just download all files and run ``index.html``
 
 Just edit js files, and then run the following command:
 
-``webpack js/app.js build/bundle.js``
+``webpack js/index.js build/bundle.js``
 
 *Happy trading!*
