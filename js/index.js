@@ -16,3 +16,8 @@ fiatAmount.addEventListener('change', function(){
     var currentCryptoType = cryptoType.value;
     getPrices(currentCryptoType, cryptoAmount, 'fiatToCrypto');
 });
+
+setInterval(function(){
+    var currentCryptoType = cryptoType.value;    
+    getPrices(currentCryptoType, fiatAmount, 'cryptoToFiat')
+}, 3000);

@@ -15,3 +15,31 @@ h1 {
     font-size: 20px;
     font-weight: bold;
 }
+
+.box {
+    padding: 1px!important;
+    width: 22%!important;
+    height:100%!important;
+    margin:auto!important;
+    font-size:1.5em;
+
+}
+
+.center-container {
+    margin: auto;
+    padding: auto;
+    width: 80%;
+    border: 1px solid lightblue;
+    background-color:lightblue;
+}
+
+form {
+    padding:10px!important;
+    margin: auto;
+    width: 90%;
+    height: 80%;
+}
+
+body {
+    background-color: #f9fbff;
+}

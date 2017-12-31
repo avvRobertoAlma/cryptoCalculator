@@ -105,6 +105,11 @@ __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].addEventListene
     Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */], 'fiatToCrypto');
 });
 
+setInterval(function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;    
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], 'cryptoToFiat')
+}, 3000);
+
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
