@@ -3,7 +3,7 @@ A simple tool to convert from FIAT to Crypto and from Crypto to FIAT using coinb
 
 ## To Run
 
-Just download all files and run index.html
+Just download all files and run ``index.html``
 
 ## To build
 
