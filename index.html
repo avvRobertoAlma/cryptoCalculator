@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cryptocalculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center">Cryptocalculator</h1>
+
+    <form class="form-inline">
+        <label class="sr-only" for="cryptoAmount">Crypto Amount</label>
+        <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="cryptoAmount" value="1"/>
+
+        <label class="sr-only" for="cryptoType">Crypto Type</label>
+        <select class="custom select mb-2 mr-sm-2 mb-sm-0" id="cryptoType">
+            <option value="BTC" selected>BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="LTC">LTC</option>
+        </select>
+        <span class="lg">=</span>
+        <span class="lg">€</span>
+        <label class="sr-only" for="fiatAmount">Fiat Amount</label>
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="fiatAmount"/>
+
+
+    </form>
+
+    </div>
+
+    <script src="./build/bundle.js" ></script>  
+</body>
+</html>

@@ -1,0 +1,17 @@
+h1 {
+    margin: 10px;
+    padding: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.lg {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
