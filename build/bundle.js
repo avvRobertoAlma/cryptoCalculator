@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,40 +83,59 @@ const fiatAmount = document.querySelector('#fiatAmount');
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrices__ = __webpack_require__(2);
+const TOFIAT = 'cryptoToFiat';
+/* harmony export (immutable) */ __webpack_exports__["b"] = TOFIAT;
 
+const TOCRYPTO = 'fiatToCrypto';
+/* harmony export (immutable) */ __webpack_exports__["a"] = TOCRYPTO;
 
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], 'cryptoToFiat');   
-});
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], 'cryptoToFiat');
-});
-
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */], 'fiatToCrypto');
-});
-
-setInterval(function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;    
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], 'cryptoToFiat')
-}, 3000);
 
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrices__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(1);
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */]);   
+});
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */]);
+});
+
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["a" /* TOCRYPTO */]);
+});
+
+setInterval(function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;    
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */])
+}, 10000);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPrices;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__updateValue__ = __webpack_require__(4);
+
+
 
 
 
@@ -133,13 +152,39 @@ function getPrices (cryptoType, valueToUpdate, type) {
     }).then(function(res){
         if(type == 'cryptoToFiat'){
             console.log(res.data.amount);
-            return valueToUpdate.value = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].value)*Number(res.data.amount);
+            const prevVal = valueToUpdate.value;
+            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].value)*Number(res.data.amount);
+            valueToUpdate.value = newVal
+            return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         } else if (type =='fiatToCrypto'){
             console.log(res.data.amount);
-            return valueToUpdate.value = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].value)/Number(res.data.amount);
+            const prevVal = valueToUpdate.value;
+            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].value)/Number(res.data.amount);
+            valueToUpdate.value = newVal;
+            return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         }
         });
         
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = updateValue;
+function updateValue(valueToUpdate, prevVal, newVal){
+    if(newVal > prevVal){
+        valueToUpdate.style.color = 'green';
+        return setTimeout(function(){
+            valueToUpdate.style.color = 'black';
+        }, 2000);
+    } else if (newVal < prevVal){
+        valueToUpdate.style.color = 'red';
+        return setTimeout(function(){
+            valueToUpdate.style.color = 'black';
+        }, 2000);
+    }
 }
 
 /***/ })

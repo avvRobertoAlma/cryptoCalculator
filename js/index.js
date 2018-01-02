@@ -1,23 +1,25 @@
 import { cryptoAmount, cryptoType, fiatAmount } from './domElements';
-import { getPrices } from './getPrices'
+import { getPrices } from './getPrices';
+import { TOFIAT, TOCRYPTO } from './constants';
+
 
 cryptoAmount.addEventListener('change', function(){
     var currentCryptoType = cryptoType.value;
-    getPrices(currentCryptoType, fiatAmount, 'cryptoToFiat');   
+    getPrices(currentCryptoType, fiatAmount, TOFIAT);   
 });
 
 cryptoType.addEventListener('change', function(){
     var currentCryptoType = cryptoType.value;
-    getPrices(currentCryptoType, fiatAmount, 'cryptoToFiat');
+    getPrices(currentCryptoType, fiatAmount, TOFIAT);
 });
 
 
 fiatAmount.addEventListener('change', function(){
     var currentCryptoType = cryptoType.value;
-    getPrices(currentCryptoType, cryptoAmount, 'fiatToCrypto');
+    getPrices(currentCryptoType, cryptoAmount, TOCRYPTO);
 });
 
 setInterval(function(){
     var currentCryptoType = cryptoType.value;    
-    getPrices(currentCryptoType, fiatAmount, 'cryptoToFiat')
-}, 3000);
+    getPrices(currentCryptoType, fiatAmount, TOFIAT)
+}, 10000);

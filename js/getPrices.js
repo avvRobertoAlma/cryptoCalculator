@@ -1,4 +1,6 @@
 import { cryptoAmount, cryptoType, fiatAmount } from './domElements';
+import { TOFIAT, TOCRYPTO } from './constants';
+import { updateValue } from './updateValue';
 
 
 export function getPrices (cryptoType, valueToUpdate, type) {
@@ -14,10 +16,16 @@ export function getPrices (cryptoType, valueToUpdate, type) {
     }).then(function(res){
         if(type == 'cryptoToFiat'){
             console.log(res.data.amount);
-            return valueToUpdate.value = Number(cryptoAmount.value)*Number(res.data.amount);
+            const prevVal = valueToUpdate.value;
+            const newVal = Number(cryptoAmount.value)*Number(res.data.amount);
+            valueToUpdate.value = newVal
+            return updateValue(valueToUpdate, prevVal, newVal);
         } else if (type =='fiatToCrypto'){
             console.log(res.data.amount);
-            return valueToUpdate.value = Number(fiatAmount.value)/Number(res.data.amount);
+            const prevVal = valueToUpdate.value;
+            const newVal = Number(fiatAmount.value)/Number(res.data.amount);
+            valueToUpdate.value = newVal;
+            return updateValue(valueToUpdate, prevVal, newVal);
         }
         });
         
