@@ -15,3 +15,6 @@ export const actualPrice1 = document.querySelector('#actualPrice1');
 export const variationMonthToday = document.querySelector('#variationMonthToday');
 export const variationYearToday = document.querySelector('#variationYearToday');
 
+export const rangeSlider = document.querySelector('#rangeSlider');
+export const outputRange = document.querySelector('#outputRange');
+

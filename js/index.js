@@ -1,7 +1,8 @@
-import { cryptoAmount, cryptoType, fiatAmount, fiatType, refMonth, refYear, actualPrice, actualPrice1, variationMonthToday, variationYearToday, lastMonthPrice, lastYearPrice } from './domElements';
+import { rangeSlider, outputRange, cryptoAmount, cryptoType, fiatAmount, fiatType, refMonth, refYear, actualPrice, actualPrice1, variationMonthToday, variationYearToday, lastMonthPrice, lastYearPrice } from './domElements';
 import { getPrices } from './getPrices';
 import { TOFIAT, TOCRYPTO } from './constants';
 import { updateTable } from './updateTable';
+import { setSpeed, priceSpeedUpdate, tableSpeedUpdate } from './setSpeed';
 
 
 cryptoAmount.addEventListener('change', function(){
@@ -24,10 +25,11 @@ fiatAmount.addEventListener('change', function(){
 });
 
 setInterval(function(){
+    console.log(priceSpeedUpdate);
     var currentCryptoType = cryptoType.value; 
     var currentFiatType = fiatType.value;   
     getPrices(currentCryptoType, fiatAmount, TOFIAT, currentFiatType)
-}, 10000);
+}, priceSpeedUpdate);
 
 setInterval(function(){
     var currentCryptoType = cryptoType.value;  
@@ -36,4 +38,10 @@ setInterval(function(){
     if(currentValue){
     return updateTable(currentValue, currentCryptoType, currentFiatType);
     }
-},5000);
+},tableSpeedUpdate);
+
+rangeSlider.addEventListener('input', function(){
+    var currentSpeed = this.value/1000;
+    outputRange.innerHTML = `Current Speed: ${currentSpeed}`;
+    setSpeed(this.value);
+})
