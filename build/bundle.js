@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -116,75 +116,16 @@ const variationYearToday = document.querySelector('#variationYearToday');
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const TOFIAT = 'cryptoToFiat';
-/* harmony export (immutable) */ __webpack_exports__["b"] = TOFIAT;
-
-const TOCRYPTO = 'fiatToCrypto';
-/* harmony export (immutable) */ __webpack_exports__["a"] = TOCRYPTO;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return currentChange; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = getPrices;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrices__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__updateTable__ = __webpack_require__(5);
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
-    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);  
-});
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
-    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);
-});
-
-
-__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
-    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["a" /* TOCRYPTO */], currentFiatType);
-});
-
-setInterval(function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value; 
-    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;   
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType)
-}, 10000);
-
-setInterval(function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;  
-    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
-    var currentValue = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value);
-    if(currentValue){
-    return Object(__WEBPACK_IMPORTED_MODULE_3__updateTable__["a" /* updateTable */])(currentValue, currentCryptoType, currentFiatType);
-    }
-},5000);
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = getPrices;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__updateValue__ = __webpack_require__(4);
 
 
 
+
+let currentChange;
 
 
 function getPrices (cryptoType, valueToUpdate, type, fiatType) {
@@ -199,21 +140,83 @@ function getPrices (cryptoType, valueToUpdate, type, fiatType) {
         return response.json()
     }).then(function(res){
         if(type == 'cryptoToFiat'){
-            console.log(res.data.amount);
+            currentChange = res.data.amount;
             const prevVal = valueToUpdate.value;
-            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].value)*Number(res.data.amount);
+            const newVal = (Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].value)*Number(res.data.amount)).toFixed(2);
             valueToUpdate.value = newVal
             return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         } else if (type =='fiatToCrypto'){
-            console.log(res.data.amount);
+            currentChange = res.data.amount;           
             const prevVal = valueToUpdate.value;
-            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value)/Number(res.data.amount);
+            const newVal = (Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value)/Number(res.data.amount)).toFixed(2);
             valueToUpdate.value = newVal;
             return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         }
         });
         
 }
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const TOFIAT = 'cryptoToFiat';
+/* harmony export (immutable) */ __webpack_exports__["b"] = TOFIAT;
+
+const TOCRYPTO = 'fiatToCrypto';
+/* harmony export (immutable) */ __webpack_exports__["a"] = TOCRYPTO;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrices__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__updateTable__ = __webpack_require__(5);
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["b" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);  
+});
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["b" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);
+});
+
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["b" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["a" /* TOCRYPTO */], currentFiatType);
+});
+
+setInterval(function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value; 
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;   
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["b" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType)
+}, 10000);
+
+setInterval(function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;  
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    var currentValue = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value);
+    if(currentValue){
+    return Object(__WEBPACK_IMPORTED_MODULE_3__updateTable__["a" /* updateTable */])(currentValue, currentCryptoType, currentFiatType);
+    }
+},5000);
 
 /***/ }),
 /* 4 */
@@ -243,6 +246,8 @@ function updateValue(valueToUpdate, prevVal, newVal){
 /* harmony export (immutable) */ __webpack_exports__["a"] = updateTable;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prices__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getPrices__ = __webpack_require__(1);
+
 
 
 
@@ -270,15 +275,16 @@ function updateTable(currentValue, currentCryptoType, currentFiatType){
             ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].ltcToUsd;
         }
     }
+    console.log('currentChange', __WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */]);
     __WEBPACK_IMPORTED_MODULE_0__domElements__["i" /* refMonth */].innerHTML = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].date.lastMonth;
     __WEBPACK_IMPORTED_MODULE_0__domElements__["j" /* refYear */].innerHTML = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].date.lastYear;
     __WEBPACK_IMPORTED_MODULE_0__domElements__["g" /* lastMonthPrice */].innerHTML = ref.lastMonth;
     __WEBPACK_IMPORTED_MODULE_0__domElements__["h" /* lastYearPrice */].innerHTML = ref.lastYear;
-    __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* actualPrice */].innerHTML = currentValue;
-    __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* actualPrice1 */].innerHTML = currentValue;
-    var lastMonthVariation = (((currentValue-ref.lastMonth)*100)/ref.lastMonth).toFixed(3);
-    var lastYearVariation = (((currentValue-ref.lastYear)*100)/ref.lastYear).toFixed(3);
-    if(currentValue > ref.lastMonth){
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* actualPrice */].innerHTML = __WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */];
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* actualPrice1 */].innerHTML = __WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */];
+    var lastMonthVariation = (((__WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */]-ref.lastMonth)*100)/ref.lastMonth).toFixed(3);
+    var lastYearVariation = (((__WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */]-ref.lastYear)*100)/ref.lastYear).toFixed(3);
+    if(__WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */] > ref.lastMonth){
         __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].innerHTML = `${lastMonthVariation} %`;
         __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.color= 'green';
         __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.fontWeight= 'bold';
@@ -287,7 +293,7 @@ function updateTable(currentValue, currentCryptoType, currentFiatType){
         __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.color= 'red';
         __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.fontWeight= 'bold';
     }
-    if(currentValue > ref.lastYear){
+    if(__WEBPACK_IMPORTED_MODULE_2__getPrices__["a" /* currentChange */] > ref.lastYear){
         __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].innerHTML = `${lastYearVariation} %`;
         __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.color= 'green';
         __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.fontWeight= 'bold';

@@ -2,6 +2,8 @@ import { cryptoAmount, cryptoType, fiatAmount, fiatType } from './domElements';
 import { TOFIAT, TOCRYPTO } from './constants';
 import { updateValue } from './updateValue';
 
+export let currentChange;
+
 
 export function getPrices (cryptoType, valueToUpdate, type, fiatType) {
     var myHeaders = {
@@ -15,15 +17,15 @@ export function getPrices (cryptoType, valueToUpdate, type, fiatType) {
         return response.json()
     }).then(function(res){
         if(type == 'cryptoToFiat'){
-            console.log(res.data.amount);
+            currentChange = res.data.amount;
             const prevVal = valueToUpdate.value;
-            const newVal = Number(cryptoAmount.value)*Number(res.data.amount);
+            const newVal = (Number(cryptoAmount.value)*Number(res.data.amount)).toFixed(2);
             valueToUpdate.value = newVal
             return updateValue(valueToUpdate, prevVal, newVal);
         } else if (type =='fiatToCrypto'){
-            console.log(res.data.amount);
+            currentChange = res.data.amount;           
             const prevVal = valueToUpdate.value;
-            const newVal = Number(fiatAmount.value)/Number(res.data.amount);
+            const newVal = (Number(fiatAmount.value)/Number(res.data.amount)).toFixed(2);
             valueToUpdate.value = newVal;
             return updateValue(valueToUpdate, prevVal, newVal);
         }
