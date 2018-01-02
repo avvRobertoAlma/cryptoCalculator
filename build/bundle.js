@@ -69,13 +69,46 @@
 
 "use strict";
 const cryptoAmount = document.querySelector('#cryptoAmount');
-/* harmony export (immutable) */ __webpack_exports__["a"] = cryptoAmount;
+/* harmony export (immutable) */ __webpack_exports__["c"] = cryptoAmount;
 
 const cryptoType = document.querySelector('#cryptoType');
-/* harmony export (immutable) */ __webpack_exports__["b"] = cryptoType;
+/* harmony export (immutable) */ __webpack_exports__["d"] = cryptoType;
 
 const fiatAmount = document.querySelector('#fiatAmount');
-/* harmony export (immutable) */ __webpack_exports__["c"] = fiatAmount;
+/* harmony export (immutable) */ __webpack_exports__["e"] = fiatAmount;
+
+const fiatType = document.querySelector('#fiatType');
+/* harmony export (immutable) */ __webpack_exports__["f"] = fiatType;
+
+
+const refMonth = document.querySelector('#refMonth');
+/* harmony export (immutable) */ __webpack_exports__["i"] = refMonth;
+
+const refYear = document.querySelector('#refYear');
+/* harmony export (immutable) */ __webpack_exports__["j"] = refYear;
+
+
+const lastMonthPrice = document.querySelector('#lastMonthPrice');
+/* harmony export (immutable) */ __webpack_exports__["g"] = lastMonthPrice;
+
+const lastYearPrice = document.querySelector('#lastYearPrice');
+/* harmony export (immutable) */ __webpack_exports__["h"] = lastYearPrice;
+
+
+const actualPrice = document.querySelector('#actualPrice');
+/* harmony export (immutable) */ __webpack_exports__["a"] = actualPrice;
+
+const actualPrice1 = document.querySelector('#actualPrice1');
+/* harmony export (immutable) */ __webpack_exports__["b"] = actualPrice1;
+
+
+const variationMonthToday = document.querySelector('#variationMonthToday');
+/* harmony export (immutable) */ __webpack_exports__["k"] = variationMonthToday;
+
+const variationYearToday = document.querySelector('#variationYearToday');
+/* harmony export (immutable) */ __webpack_exports__["l"] = variationYearToday;
+
+
 
 
 /***/ }),
@@ -99,31 +132,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrices__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__updateTable__ = __webpack_require__(5);
 
 
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */]);   
+
+__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);  
 });
 
-__WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */]);
+__WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType);
 });
 
 
-__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].addEventListener('change', function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["a" /* TOCRYPTO */]);
+__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].addEventListener('change', function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["a" /* TOCRYPTO */], currentFiatType);
 });
 
 setInterval(function(){
-    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* cryptoType */].value;    
-    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */])
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value; 
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;   
+    Object(__WEBPACK_IMPORTED_MODULE_1__getPrices__["a" /* getPrices */])(currentCryptoType, __WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */], __WEBPACK_IMPORTED_MODULE_2__constants__["b" /* TOFIAT */], currentFiatType)
 }, 10000);
+
+setInterval(function(){
+    var currentCryptoType = __WEBPACK_IMPORTED_MODULE_0__domElements__["d" /* cryptoType */].value;  
+    var currentFiatType = __WEBPACK_IMPORTED_MODULE_0__domElements__["f" /* fiatType */].value;
+    var currentValue = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value);
+    if(currentValue){
+    return Object(__WEBPACK_IMPORTED_MODULE_3__updateTable__["a" /* updateTable */])(currentValue, currentCryptoType, currentFiatType);
+    }
+},5000);
 
 /***/ }),
 /* 3 */
@@ -139,11 +187,11 @@ setInterval(function(){
 
 
 
-function getPrices (cryptoType, valueToUpdate, type) {
+function getPrices (cryptoType, valueToUpdate, type, fiatType) {
     var myHeaders = {
         'Access-Control-Allow-Origin':'*'
     }
-    fetch(`https://api.coinbase.com/v2/prices/${cryptoType}-EUR/buy`, {
+    fetch(`https://api.coinbase.com/v2/prices/${cryptoType}-${fiatType}/buy`, {
         method: 'GET',
         mode: 'cors',
         headers:myHeaders,
@@ -153,13 +201,13 @@ function getPrices (cryptoType, valueToUpdate, type) {
         if(type == 'cryptoToFiat'){
             console.log(res.data.amount);
             const prevVal = valueToUpdate.value;
-            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* cryptoAmount */].value)*Number(res.data.amount);
+            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* cryptoAmount */].value)*Number(res.data.amount);
             valueToUpdate.value = newVal
             return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         } else if (type =='fiatToCrypto'){
             console.log(res.data.amount);
             const prevVal = valueToUpdate.value;
-            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["c" /* fiatAmount */].value)/Number(res.data.amount);
+            const newVal = Number(__WEBPACK_IMPORTED_MODULE_0__domElements__["e" /* fiatAmount */].value)/Number(res.data.amount);
             valueToUpdate.value = newVal;
             return Object(__WEBPACK_IMPORTED_MODULE_2__updateValue__["a" /* updateValue */])(valueToUpdate, prevVal, newVal);
         }
@@ -186,6 +234,109 @@ function updateValue(valueToUpdate, prevVal, newVal){
         }, 2000);
     }
 }
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = updateTable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domElements__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prices__ = __webpack_require__(6);
+
+
+
+function updateTable(currentValue, currentCryptoType, currentFiatType){
+    let ref;
+    if(currentCryptoType == 'BTC'){
+        if(currentFiatType == 'EUR'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].btcToEur;
+        }
+        else if (currentFiatType == 'USD'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].btcToUsd;
+        }
+    } else if (currentCryptoType == 'ETH'){
+        if(currentFiatType == 'EUR'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].ethToEur;
+        }
+        else if (currentFiatType == 'USD'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].ethToUsd;
+        }
+    } else if (currentCryptoType == 'LTC'){
+        if(currentFiatType == 'EUR'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].ltcToEur;
+        }
+        else if (currentFiatType == 'USD'){
+            ref = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].ltcToUsd;
+        }
+    }
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["i" /* refMonth */].innerHTML = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].date.lastMonth;
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["j" /* refYear */].innerHTML = __WEBPACK_IMPORTED_MODULE_1__prices__["a" /* prices */].date.lastYear;
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["g" /* lastMonthPrice */].innerHTML = ref.lastMonth;
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["h" /* lastYearPrice */].innerHTML = ref.lastYear;
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["a" /* actualPrice */].innerHTML = currentValue;
+    __WEBPACK_IMPORTED_MODULE_0__domElements__["b" /* actualPrice1 */].innerHTML = currentValue;
+    var lastMonthVariation = (((currentValue-ref.lastMonth)*100)/ref.lastMonth).toFixed(3);
+    var lastYearVariation = (((currentValue-ref.lastYear)*100)/ref.lastYear).toFixed(3);
+    if(currentValue > ref.lastMonth){
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].innerHTML = `${lastMonthVariation} %`;
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.color= 'green';
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.fontWeight= 'bold';
+    } else {
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].innerHTML = `${lastMonthVariation} %`;
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.color= 'red';
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["k" /* variationMonthToday */].style.fontWeight= 'bold';
+    }
+    if(currentValue > ref.lastYear){
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].innerHTML = `${lastYearVariation} %`;
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.color= 'green';
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.fontWeight= 'bold';
+    } else {
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].innerHTML = `${lastYearVariation} %`;
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.color= 'red';
+        __WEBPACK_IMPORTED_MODULE_0__domElements__["l" /* variationYearToday */].style.fontWeight= 'bold'; 
+    }
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const prices = {
+    date:{
+        lastYear:'03/01/2017',
+        lastMonth:'03/12/2017',
+    },
+    btcToEur :{
+        lastYear:975.60,
+        lastMonth:9913.72,
+    },
+    btcToUsd :{
+        lastYear: 1016.35,
+        lastMonth: 11754.36,
+    },
+    ethToEur:{
+        lastYear:8.23,
+        lastMonth:403.93,
+    },
+    ethToUsd:{
+        lastYear:8.57,
+        lastMonth:478.93,
+    },
+    ltcToEur:{
+        lastYear:4.37,
+        lastMonth:87.50,
+    },
+    ltcToUsd:{
+        lastYear:4.55,
+        lastMonth:103.55,
+    },
+
+
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = prices;
+
 
 /***/ })
 /******/ ]);

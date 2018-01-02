@@ -1,13 +1,13 @@
-import { cryptoAmount, cryptoType, fiatAmount } from './domElements';
+import { cryptoAmount, cryptoType, fiatAmount, fiatType } from './domElements';
 import { TOFIAT, TOCRYPTO } from './constants';
 import { updateValue } from './updateValue';
 
 
-export function getPrices (cryptoType, valueToUpdate, type) {
+export function getPrices (cryptoType, valueToUpdate, type, fiatType) {
     var myHeaders = {
         'Access-Control-Allow-Origin':'*'
     }
-    fetch(`https://api.coinbase.com/v2/prices/${cryptoType}-EUR/buy`, {
+    fetch(`https://api.coinbase.com/v2/prices/${cryptoType}-${fiatType}/buy`, {
         method: 'GET',
         mode: 'cors',
         headers:myHeaders,

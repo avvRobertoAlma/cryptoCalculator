@@ -9,29 +9,79 @@
     <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
+    
+    <!-- container -->
     <div class="container">
         <h1 class="center">Cryptocalculator</h1>
+        <h2 class="center">Insert Eur or Crypto to convert automatically</h2>
+    </br>
+</br>
 
         <div class="center-container">
-    <form class="form-inline">
-        <label class="sr-only" for="cryptoAmount">Crypto Amount</label>
-        <input type="number" class="form-control mb-4 mr-sm-4 mb-sm-2 box" id="cryptoAmount" value="1"/>
-
-        <label class="sr-only" for="cryptoType">Crypto Type</label>
-        <select class="custom select mb-4 mr-sm-4 mb-sm-2 box" id="cryptoType">
+    <form>
+        <div class="row">
+            <div class="col">
+        <input type="number" class="form-control" id="cryptoAmount" value="1"/>
+    </div>
+    <div class="col">
+        <select class="form-control" id="cryptoType">
             <option value="BTC" selected>BTC</option>
             <option value="ETH">ETH</option>
             <option value="LTC">LTC</option>
         </select>
-        <span class="lg">=</span>
-        <span class="lg">€</span>
-        <label class="sr-only" for="fiatAmount">Fiat Amount</label>
-        <input type="text" class="form-control mb-4 mr-sm-4 mb-sm-2 box" id="fiatAmount"/>
+        </div>
+    </div>
+</br>
 
+    <div class="row">
+            <div class="col">
+        <input type="text" class="form-control" id="fiatAmount"/>
+            </div>
+            <div class="col">
+        <select class="form-control" id="fiatType">
+                <option value="EUR" selected>€ (EUR)</option>
+                <option value="USD">$ (USD)</option>
+            </select>
+    </div>
+            
+    </div>
 
     </form>
 </div>
     </div>
+    <!-- end 1st container -->
+
+</br>
+    <!-- container -->
+    <div class="container">
+        <h3 class="center">Statistics</h3>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date.</th>
+                    <th>Old Price</th>
+                    <th>Today</th>
+                    <th>Variation (%)</th>
+                </tr>
+                <tr>
+                    <td id="refMonth"></td>
+                    <td id="lastMonthPrice"></td>
+                    <td id="actualPrice"></td>
+                    <td id="variationMonthToday"></td>
+                </tr>
+                <tr>
+                        <td id="refYear"></td>
+                        <td id="lastYearPrice"></td>
+                        <td id="actualPrice1"></td>
+                        <td id="variationYearToday"></td>
+                    </tr>
+            </thead>
+        </table>
+
+    </div>
+
+    <!-- container -->
 
     <script src="./build/bundle.js" ></script>  
 </body>
